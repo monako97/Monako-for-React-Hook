@@ -1,0 +1,59 @@
+@charset "UTF-8";
+strong{
+  font-weight: bold;
+  text-align: left!important;
+}
+.warning,.success,.primary,.danger,.info{
+  color: #fff;
+  transition: 0.5s;
+  cursor: pointer;
+  position: relative;
+  padding: .5rem 4rem .5rem 1rem;
+  border-radius: 4rem;
+  width: max-content;
+  margin: 0 auto;
+  user-select: none;
+  :global(.monako__icon){
+    min-width: 20px;
+    text-align: center;
+    margin-right: 5px;
+    font-weight: 400;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+  }
+  .close{
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    bottom: 0;
+    margin: auto;
+    font-size: 15px;
+    line-height: 20px;
+    text-shadow: 0 0 0 #fff;
+    cursor: pointer;
+  }
+}
+.success{
+  box-shadow: 1px 9px 20px 0 rgba(103, 194, 58, 0.6);
+  background-color: #67c23a;
+}
+.warning{
+  box-shadow: 1px 9px 20px 0 rgba(230, 162, 60, 0.6);
+  background-color: #E6A23C;
+}
+.primary{
+  box-shadow: 1px 9px 20px 0 rgba(64, 158, 255, 0.6);
+  background-color: #409EFF;
+}
+.danger{
+  box-shadow: 1px 9px 20px 0 rgba(245, 108, 108, 0.6);
+  background-color: #F56C6C;
+}
+.info{
+  box-shadow: 1px 9px 20px 0 rgba(144, 147, 153, 0.6);
+  background-color: #909399;
+}

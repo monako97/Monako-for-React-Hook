@@ -1,0 +1,23 @@
+@charset "UTF-8";
+:global(.for-container.for-fullscreen){
+  background-color: white!important;
+  width: calc(100% - 40px)!important;
+  height: calc(100% - 40px)!important;
+  margin: 10px!important;
+  max-width: none!important;
+  max-height: calc(100% - 40px);
+}
+.info{
+  margin-top: 10px;
+  position: relative;
+  text-align: left;
+  font-size: 10px!important;
+  height: 37px;
+  color: rgba(0,0,0,0.5);
+  padding-left: 10px!important;
+  >button{
+    position: absolute;
+    right: 0;
+    margin: 0;
+  }
+}

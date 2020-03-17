@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "monako__icon";
+  src: url('../static/fonts/iconfont.eot?t=1579783718619'); /* IE9 */
+  src: url('../static/fonts/iconfont.eot?t=1579783718619#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../static/fonts/iconfont.woff2') format('woff2'),
+  url('../static/fonts/iconfont.woff?t=1579783718619') format('woff'),
+  url('../static/fonts/iconfont.ttf?t=1579783718619') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('../static/fonts/iconfont.svg?t=1579783718619#monako__icon') format('svg'); /* iOS 4.1- */
+}
+:global {
+  .monako__icon {
+    font-family: "monako__icon", serif;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .iconxiala:before {
+    content: "\e611";
+  }
+
+  .iconclose:before {
+    content: "\e720";
+  }
+
+  .icon14CIRCLE:before {
+    content: "\e640";
+  }
+
+  .iconfy_ic_warnning:before {
+    content: "\e670";
+  }
+
+  .iconinfo:before {
+    content: "\e6eb";
+  }
+
+  .iconsuccess:before {
+    content: "\e726";
+  }
+
+  .iconzan-f:before {
+    content: "\e669";
+  }
+
+
+}

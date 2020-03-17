@@ -1,0 +1,342 @@
+@charset "utf-8";
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(../static/fonts/Roboto-Regular.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(../static/fonts/Roboto-Regular5.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(../static/fonts/Roboto-Regular7.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(../static/fonts/Roboto-Regular4.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(../static/fonts/Roboto-Regular7w.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(../static/fonts/Roboto-Regular7g.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(../static/fonts/Roboto-Regular4m.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'HelveticaNeue-UltraLight';
+  src: url(../static/fonts/HelveticaNeue-UltraLight.woff2) format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+/* 自定义动画 */
+@keyframes :global(error) {
+  from,
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+:global{
+  body,
+  html,
+  h4,
+  h1,
+  figure,
+  ul,
+  p {
+    margin: 0;
+    padding: 0;
+    background: none;
+  }
+
+  body,
+  html {
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica", "Roboto", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    min-height: 100vh;
+    min-width: 325px;
+    color: rgba(54, 52, 37, 1.00);
+    line-height: 1.8;
+    font-size: 14px;
+    height: 100%;
+    overflow-y: auto;
+    a {
+      color: rgba(54, 52, 37, 1.00);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: rgba(233, 136, 124, 1);
+      transition: color 0.1s;
+    }
+
+    ul {
+      li {
+        list-style: none;
+      }
+    }
+    #monako{
+      height: 100%;
+      min-height: 100%;
+      -webkit-overflow-scrolling: touch; // 优化移动端滑动体验
+      header,
+      footer {
+        width: 100%;
+        min-height: 70px;
+        text-align: center;
+        user-select: none;
+      }
+      footer {
+        background: rgba(255, 255, 255, 0.5);
+        p {
+          height: 70px;
+          line-height: 70px;
+          font-size: 13px;
+          color: #5f5f5f;
+          width: 100%;
+          border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+        }
+        article {
+          padding: 50px 20px;
+        }
+      }
+      >.class-container,>.timeline-container{
+        min-height: calc(100% - 266.5px);
+        padding-top: 70px;
+        text-align: center;
+      }
+    }
+    #live2d {
+      position: fixed;
+      bottom: 0;
+      right: 5%;
+      z-index: 9;
+      pointer-events: none;
+    }
+
+    input,
+    textarea {
+      caret-color: plum;
+    }
+    img[src=""],
+    img:not([src]) {
+      opacity: 0;
+      background-color: rgba(169, 169, 169, 0.2);
+    }
+
+    @media (max-width: 580px) {
+      #live2d {
+        width: 150px;
+      }
+    }
+  }
+
+  .dai-log {
+    position: fixed;
+    z-index: 99999999999999 !important;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: opacity .2s;
+    >div {
+      height: max-content;
+      width: max-content;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+  }
+  .route-appear,
+  .route-exit,
+  .route-enter,
+  .down-appear,
+  .down-exit,
+  .down-enter{
+    opacity: 0.5;
+  }
+  .route-appear,
+  .route-enter,
+  .down-appear,
+  .down-enter{
+    position: absolute;
+    width: 100%;
+  }
+  .route-appear,
+  .route-enter,
+  .route-exit-active,
+  .route-exit-done{
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .route-appear-active,
+  .route-appear-done,
+  .route-enter-active,
+  .route-enter-done{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .route-enter-done{
+    transform: none;
+  }
+  .down-appear,
+  .down-enter,
+  .down-exit-active,
+  .down-exit-done{
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  .down-appear-active,
+  .down-appear-done,
+  .down-enter-active,
+  .down-enter-done{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .down-enter-done{
+    transform: none;
+  }
+  .route-appear-active,
+  .route-appear-done,
+  .route-enter-active,
+  .route-exit-active,
+  .route-enter-done,
+  .route-exit-done,
+  .down-appear-active,
+  .down-appear-done,
+  .down-enter-active,
+  .down-exit-active,
+  .down-enter-done,
+  .down-exit-done{
+    transition: transform 0.3s;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(176, 139, 227, 0.5);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(176, 139, 227, 0.5);
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background-color: rgba(247, 138, 224, 0.5);
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  // 自动填充样式
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus {
+    border: none;
+    border-radius: 5px;
+    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.1) inset;
+    transition: background-color 5000s ease-in-out 0s;
+    font-weight: 400;
+    caret-color: plum;
+  }
+  .ReactVirtualized__Grid__innerScrollContainer{
+    padding: 70px 0;
+  }
+  .ReactVirtualized__Grid.ReactVirtualized__List::-webkit-scrollbar{
+    width: 5px;
+    display: block;
+  }
+  // 错误
+  .error{
+    animation: error 1s ease-in-out;
+  }
+  // Toast 提示框
+  .monako__toast{
+    width: max-content;
+    position: fixed;
+    right: 0;
+    left: 0;
+    margin: auto;
+    z-index: 999999999999 !important;
+    transition: top .3s;
+  }
+  // 自动生成 nth-of-type(1) ～ (10) 的样式
+  @for $i from 1 through 10 {
+    .monako__toast:nth-of-type(#{$i}) {
+      top: ($i - 1) * 50 + 30 + px;
+    }
+  }
+  // loading
+  .monako__toast.loading{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+  }
+}
+
