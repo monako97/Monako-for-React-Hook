@@ -1,4 +1,4 @@
-import http from 'axios';
+import axios from 'axios';
 import Toast from "../modules/Toast/controller";
 import {changeUserInfo} from "../store/action";
 import React from "react";
@@ -11,29 +11,35 @@ import Context from "../store/Context";
  * .catch(error => error);
  **/
 let num = 0;
-http.defaults.baseURL = `http://${document.domain}/monako_api/`;
-// http.defaults.baseURL = `http://${document.domain}:8080/monako_api/`;
-http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-http.defaults.retry = 0;
-// http.defaults.crossDomain = true;
-http.defaults.withCredentials = true; //允许跨域携带cookie
-http.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';//标识这是一个 ajax 请求
-// http.defaults.retryDelay = 1000;
-http.defaults.timeout = 20000;
+// 创建实例
+const http = axios.create({
+    baseURL: `http://${document.domain}/monako_api/`,
+    headers: {
+        "Content-Type": 'application/x-www-form-urlencoded;charset=utf-8', // 未POST请求时，数据未做处理时会出现错误，解决方法就是 直接设置该项
+        'X-Requested-With': 'XMLHttpRequest', //标识这是一个 ajax 请求
+    },
+    retry: 0,
+    timeout: 20000,
+    withCredentials: true, //允许跨域携带cookie
+    // `maxContentLength` 定义允许的响应内容的最大尺寸
+    maxContentLength: 2000
+});
 // 请求前
 http.interceptors.request.use(
     config => {
         // let token = "";
         // if (token) config.headers.token = `${token}`;
         // 请求时出现加载遮罩层
-        if (!document.getElementsByClassName("monako__toast loading").length) Toast.loading("loading",-1);
+        // hidLoading 不显示加载
+        console.log(config);
+        if (!document.getElementsByClassName("monako__toast loading").length&&!config.hidLoading) Toast.loading("loading",-1);
         num++;
         // 请求前
         return config;
     },
     err => Promise.reject(err)
 );
-// 接收后
+// // 接收后
 http.interceptors.response.use(
     response => {
         resultUntil();
@@ -65,7 +71,7 @@ let resultUntil = () => {
     if (num <= 0) {
         // 删除遮罩层
         let _loading = document.getElementsByClassName("monako__toast loading");
-        if(_loading !== null) document.body.removeChild(_loading[0]);
+        if(_loading !== null && _loading.length) document.body.removeChild(_loading[0]);
     }
 };
 export default http;

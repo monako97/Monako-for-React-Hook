@@ -6,6 +6,9 @@ import {changDaiLog} from "../store/action";
 import http from "../unit/httpUnit";
 import Toast from "../modules/Toast/controller";
 import Context from "../store/Context";
+import {ProgressBar} from "../modules/ProgressBar/ProgressBar";
+import {CSSTransition} from "react-transition-group";
+
 const MarkdownEdit = ({user,callback}) => {
     const {dispatch} = useContext(Context);
     // 输入内容
@@ -19,6 +22,10 @@ const MarkdownEdit = ({user,callback}) => {
             setCount(500 - value.length);
         }
     },[count]);
+    // 显示进度条
+    const [showProgress, setShowProgress] = useState(false);
+    // 上传进度
+    const [progress, setProgress] = useState(0);
     // 上传图片
     const addImg = useCallback(file => {
         let param = new FormData();
@@ -27,6 +34,16 @@ const MarkdownEdit = ({user,callback}) => {
         http.post("upload_img",param,{
             headers: {
                 "Content-Type": "multipart/form-data"
+            },
+            hidLoading: true, // 不显示loading
+            timeout: 60000, // 超时时间修改为1分钟
+            onUploadProgress: progressEvent => { //原生获取上传进度的事件
+                if(progressEvent.lengthComputable){
+                    setShowProgress(true);
+                    //属性lengthComputable主要表明总共需要完成的工作量和已经完成的工作是否可以被测量
+                    //如果lengthComputable为false，就获取不到progressEvent.total和progressEvent.loaded
+                    setProgress(Math.floor(progressEvent.loaded / progressEvent.total * 100));
+                }
             }
         }).then(response=>{
             if (response.status===200){
@@ -35,6 +52,10 @@ const MarkdownEdit = ({user,callback}) => {
             }else {
                 Toast.danger(response.data.message,2000,true);
             }
+        }).finally(()=>{
+            // 关闭进度条
+            setShowProgress(false);
+            setProgress(0);
         });
     },[info]);
     // 提交信息
@@ -55,6 +76,14 @@ const MarkdownEdit = ({user,callback}) => {
         console.log("save",value);
     },[]);
     return <>
+        <CSSTransition
+            in={showProgress}
+            timeout={200}
+            classNames="route"
+            unmountOnExit={true}
+            appear={true}>
+            <ProgressBar progress={progress}/>
+        </CSSTransition>
         <Editor value={info}
                 placeholder="支持 markdown 语法"
                 lineNum={false}
