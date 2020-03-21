@@ -49,7 +49,7 @@ tar -zxvf nginx-1.17.7.tar.gz
 
 ```shell
 cd nginx-1.17.7/
-./configure
+./configure --with-stream
 make
 make install
 ```

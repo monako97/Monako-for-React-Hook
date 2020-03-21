@@ -29,7 +29,7 @@
    yum repolist all | grep mysql
    ```
 
-   ![](https://i.loli.net/2019/12/24/DlBQOy7ZtusG2Xb.png)
+   ![](../markdown/img/DlBQOy7ZtusG2Xb.png)
 
    > 可以看到mysql8是可用的，其它是禁用的，我正好是需要安装mysql8，所以不用管了
    >

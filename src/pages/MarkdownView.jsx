@@ -34,7 +34,7 @@ const MarkdownView = () => {
             };
             http.request({
                 method: "GET",
-                url: `http://${document.domain + ":" + window.location.port}/static/md/${state.title}.md`,
+                url: `http://${document.domain + ":" + window.location.port}/markdown/${state.title}.md`,
                 responseType: "blob"
             }).then(response => {
                 if (response && response.status === 200){

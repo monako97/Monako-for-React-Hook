@@ -16,7 +16,7 @@
 
 > 事先把某个对象传递给a，当a执行到5的时候，通过这个对象来调用b中的方法，但是注意，不是直接传递b的实例，而是传递一个接口的实例过去
 
-![](img/iRXCsQdoOL1pGIr.jpg)
+![](../markdown/img/iRXCsQdoOL1pGIr.jpg)
 
 ### Web监听器
 

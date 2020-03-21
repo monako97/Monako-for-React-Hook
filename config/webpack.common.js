@@ -38,6 +38,7 @@ module.exports = {
         // 拷贝静态文件
         new CopyWebpackPlugin([
             {from: path.resolve(__dirname, '../src/static'), to: 'static'},
+            {from: path.resolve(__dirname, '../src/markdown'), to: 'markdown'},
             {from: path.resolve(__dirname, '../src/error'), to: './'},
         ]),
         // 编译显示进度条

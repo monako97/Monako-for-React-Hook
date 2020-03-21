@@ -54,19 +54,19 @@ del key
 
 __1. 在窗口1开启事务，多次累加数据__
 
-![](img/497280b8-83be-4f0b-9f2b-ea997cfc0aa020200207135245.png)
+![](../markdown/img/497280b8-83be-4f0b-9f2b-ea997cfc0aa020200207135245.png)
 
 __2. 在窗口2中获取值__
 
-![](img/1daa6ad8-8746-4e56-aa0b-ed30e9129bd820200207135521.png)
+![](../markdown/img/1daa6ad8-8746-4e56-aa0b-ed30e9129bd820200207135521.png)
 
 __3. 在窗口1中提交事物__
 
 回滚：discard
 
-![image-20200207135716868](img/08d1c537-0612-4d3f-9042-c55fa652ebadimage-20200207135716868.png)
+![image-20200207135716868](../markdown/img/08d1c537-0612-4d3f-9042-c55fa652ebadimage-20200207135716868.png)
 
 __4. 在窗口2中获取值__
 
-![](img/1fcd69fc-422c-4e7c-b664-7ab4bf2449e320200207135751.png)
+![](../markdown/img/1fcd69fc-422c-4e7c-b664-7ab4bf2449e320200207135751.png)
 

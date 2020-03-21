@@ -10,7 +10,7 @@ const socketUnit = () => {
     // 心跳时间 5s
     const heartBeatTime = 5000;
     // 心跳信息
-    const [heartMsg, setHearMsg] = useState("hello");
+    const heartMsg = "hello";
     // 心跳状态
     let alive = false;
     // 重连计时器
@@ -21,11 +21,10 @@ const socketUnit = () => {
     const reConnectTime = 5000;
     // 重连次数
     const [reConnectCount, setReConnectCount] = useState(5);
-    const { state, dispatch } = React.useContext(Context);
+    const { dispatch } = React.useContext(Context);
 
     // socket实例
     const [socket, setSocket] = useState(null);
-
     useEffect(() => {
         init();
         return ()=>{
@@ -45,7 +44,7 @@ const socketUnit = () => {
     },[socket]);
     const init = useCallback(() => {
         console.log("初始化: WebSocket"+reConnectCount);
-        if (typeof (WebSocket) == "undefined") {
+        if (typeof (WebSocket) === undefined) {
             Toast.danger("您的浏览器不支持WebSocket");
         } else {
             try{

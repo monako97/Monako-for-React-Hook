@@ -32,7 +32,7 @@ commit;
 
 #### 演示事务：
 
-![演示事务](img/5d1856de0ce6327604.png "演示事务")
+![演示事务](../markdown/img/5d1856de0ce6327604.png "演示事务")
 
 ### 使用代码方式演示事务
 
@@ -139,7 +139,7 @@ select @@transaction_isolation;
 set 关键字 transaction isolation level 隔离级别;
 ```
 
-![隔离级别](img/5d187667b080378238.png "隔离级别")
+![隔离级别](../markdown/img/5d187667b080378238.png "隔离级别")
 
 __按效率划分（从高到低）__
 

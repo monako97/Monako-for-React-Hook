@@ -511,7 +511,7 @@ __分为三部分：__
 
 * 在从DOM卸载组件之前调用它，做一些回收类的操作，如清除定时器等
 
-![](img/YOI8obKRFu7nG49.jpg)
+![](../markdown/img/YOI8obKRFu7nG49.jpg)
 
 ```jsx
 // prop-types 职能只提供了一些常见的数据类型，用于做类型校验

@@ -324,7 +324,7 @@ __空间名称的作用：__
 
 * [下载安装](https://tomcat.apache.org/download-90.cgi)
 
-![下载安装](img/5d12e86e87bb213371.png "下载安装")
+![下载安装](../markdown/img/5d12e86e87bb213371.png "下载安装")
 
 * 解压到 /usr/local/
 
