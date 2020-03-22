@@ -2,6 +2,7 @@ import axios from 'axios';
 import Toast from "../modules/Toast/controller";
 import {changeUserInfo} from "../store/action";
 import React from "react";
+import ReactDom from "react-dom";
 import Context from "../store/Context";
 /**
  * @param option { method, path, data || params }
@@ -16,22 +17,17 @@ const http = axios.create({
     baseURL: `http://${document.domain}/monako_api/`,
     headers: {
         "Content-Type": 'application/x-www-form-urlencoded;charset=utf-8', // 未POST请求时，数据未做处理时会出现错误，解决方法就是 直接设置该项
-        'X-Requested-With': 'XMLHttpRequest', //标识这是一个 ajax 请求
+        'X-Requested-With': 'XMLHttpRequest', // 标识这是一个 ajax 请求
     },
     retry: 0,
     timeout: 20000,
-    withCredentials: true, //允许跨域携带cookie
-    // `maxContentLength` 定义允许的响应内容的最大尺寸
-    maxContentLength: 2000
+    withCredentials: true, // 允许跨域携带cookie
+    maxContentLength: 20000 // 定义允许的响应内容的最大尺寸
 });
 // 请求前
 http.interceptors.request.use(
     config => {
-        // let token = "";
-        // if (token) config.headers.token = `${token}`;
-        // 请求时出现加载遮罩层
-        // hidLoading 不显示加载
-        console.log(config);
+        // 请求时出现加载遮罩层，hidLoading 不显示加载
         if (!document.getElementsByClassName("monako__toast loading").length&&!config.hidLoading) Toast.loading("loading",-1);
         num++;
         // 请求前
@@ -71,7 +67,10 @@ let resultUntil = () => {
     if (num <= 0) {
         // 删除遮罩层
         let _loading = document.getElementsByClassName("monako__toast loading");
-        if(_loading !== null && _loading.length) document.body.removeChild(_loading[0]);
+        if(_loading && _loading.length) {
+            ReactDom.unmountComponentAtNode(_loading[0]);
+            document.body.removeChild(_loading[0]);
+        }
     }
 };
 export default http;

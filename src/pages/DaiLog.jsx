@@ -19,11 +19,13 @@ export default () => {
         loginRef.current.InTransaction && await loginRef.current.InTransaction(200);
         dispatch(changDaiLog(false));
     },[]);
-    return <>
-        {
-            show ? <div className="dai-log" onClick={()=>close()} style={{ opacity: opacity }}>
-                <LoginBox ref={loginRef}/>
-            </div> : null
-        }
-    </>
+    return (
+        <>
+            {
+                show ? <div className="dai-log" onClick={()=>close()} style={{ opacity: opacity }}>
+                    <LoginBox ref={loginRef}/>
+                </div> : null
+            }
+        </>
+    );
 };

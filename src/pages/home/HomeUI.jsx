@@ -2,7 +2,7 @@ import React from "react";
 import HomeStyle from "../../style/home-container.scss";
 import {AutoSizer, InfiniteLoader, List} from "react-virtualized";
 export default ({list, isRowLoaded, onRowsRendered, rowHeight, rowRenderer}) => {
-    return <main className={HomeStyle.home_container}>
+    return (<main className={HomeStyle.home_container}>
         <InfiniteLoader
             isRowLoaded={({ index }) => isRowLoaded({ index })}
             rowCount={list.length}
@@ -21,5 +21,5 @@ export default ({list, isRowLoaded, onRowsRendered, rowHeight, rowRenderer}) => 
                 </AutoSizer>
             )}
         </InfiniteLoader>
-    </main>
+    </main>);
 };

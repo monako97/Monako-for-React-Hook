@@ -2,6 +2,7 @@ import React, {useState, useCallback, useEffect} from "react";
 import Context from "../store/Context";
 import Toast from "../modules/Toast/controller";
 import {changeUserInfo} from "../store/action";
+import {NotificationUtil} from "./NotificationUtil";
 
 const socketUnit = () => {
     const url = `${document.domain}:8080/monako_api/websocket`;
@@ -43,27 +44,11 @@ const socketUnit = () => {
         if (socket) func();
     },[socket]);
     const init = useCallback(() => {
-        console.log("初始化: WebSocket"+reConnectCount);
         if (typeof (WebSocket) === undefined) {
             Toast.danger("您的浏览器不支持WebSocket");
         } else {
             try{
                 setSocket(new WebSocket(`ws://${url}`));
-                // switch (state.browser) {
-                //     case "Safari":
-                //     case "Chrome":
-                //         setSocket(new WebSocket(`ws://${url}`));
-                //         break;
-                //     case "Firefox":
-                //         setSocket(new MozWebSocket(`wss://${url}`));
-                //         break;
-                //     case "Opera":
-                //         break;
-                //     case "IE":
-                //     case "Edge":
-                //         setSocket(new SockJS(`http://${url}`));
-                //         break;
-                // }
             }catch (e) {
 
             }
@@ -96,6 +81,8 @@ const socketUnit = () => {
                         Toast.primary(info.message);
                         break;
                     case "loginOut":
+                        // 当Notification的permission为granted时，才可以使用消息提醒
+                        if (Notification.permission === "granted") new Notification("用户已登出", { body: info.message});
                         Toast.primary(info.message);
                         // 登录失效，清除用户信息
                         dispatch(changeUserInfo(null));
@@ -128,7 +115,7 @@ const socketUnit = () => {
             /* 心跳计时器 */
             setHeartTimer(setInterval(()=>{
                 //发送心跳信息
-                // socket.send(heartMsg);
+                socket.send(heartMsg);
             },heartBeatTime));
         }
     },[socket,heartMsg,heartBeatTime]);

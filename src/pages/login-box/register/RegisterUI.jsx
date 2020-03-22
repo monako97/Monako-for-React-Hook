@@ -22,7 +22,7 @@ export default ({
                     email,
                     setEmail
                 }) => {
-    return <div className={loginStyle.form}>
+    return (<div className={loginStyle.form}>
         {
             step===1 ? <>
                 <label htmlFor="username"
@@ -69,5 +69,5 @@ export default ({
                 <polyline points='2,10 12,18 28,2'/>
             </svg>
         </button>
-    </div>;
+    </div>);
 }

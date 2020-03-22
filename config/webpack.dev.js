@@ -21,18 +21,13 @@ module.exports = merge(common, {
     devtool: 'inline-source-map',
     devServer: {
         contentBase: path.resolve(__dirname, '../dist'),
-        openPage: 'monako.html', //指定第一次打开的路径
+        openPage: 'index.html', //指定第一次打开的路径
         compress: true, //启用 gzip 压缩
         host: "localhost",
         port: 1314,
         inline: true,
         hot: true, //启用热替换模块
-        historyApiFallback: {
-            rewrites: [
-                { from: /^\/$/, to: './monako.html' },
-                { from: /./, to: './monako.html' }
-            ]
-        }
+        historyApiFallback: true
     },
     plugins: [
         new Webpack.HotModuleReplacementPlugin()

@@ -29,6 +29,7 @@ export default () => {
     }, []);
     // 首次加载
     useEffect(() => {
+        document.title = "首页";
         moreList();
         _rowHeight();
         window.addEventListener("resize", _rowHeight);
@@ -76,7 +77,7 @@ export default () => {
 
     // 渲染列表
     const rowRenderer = React.useCallback(({key, index, style}) => {
-        return <HomeCardUI key={key} index={index} style={style} list={list} handleClick={handleClick} />
+        return (<HomeCardUI key={key} index={index} style={style} list={list} handleClick={handleClick} />);
     }, [list]);
     return {list, isRowLoaded, onRowsRendered, rowHeight, rowRenderer};
 }

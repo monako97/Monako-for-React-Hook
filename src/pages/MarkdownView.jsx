@@ -16,6 +16,7 @@ const MarkdownView = () => {
         http.post("find_markdown",{id: parseInt(params.id)}).then(response => {
             if (response && response.status === 200) setState(response.data.result);
             else Toast.danger(response.data.message);
+            document.title = response.data.result.title;
         });
     },[]);
     useEffect(() => {
@@ -55,7 +56,7 @@ const MarkdownView = () => {
             });
         }
     },[state]);
-    return <>
+    return (<>
         <main className="detail-container">
             <img className="bg-blur" src={state?state.image:null} alt="" style={{ opacity: opacity }}/>
             {/*加载完成后显示md文档*/}
@@ -65,6 +66,6 @@ const MarkdownView = () => {
                 <Comment id={parseInt(params.id)}/>
             </Suspense>
         </main>
-    </>
+    </>);
 };
 export default MarkdownView;

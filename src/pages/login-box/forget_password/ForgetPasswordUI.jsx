@@ -21,7 +21,7 @@ export default ({
                     focusClass,
                     submit
                 }) => {
-    return <div className={loginStyle.form}>
+    return (<div className={loginStyle.form}>
         <CSSTransition in={isDispatch}
                        timeout={300} classNames="route" unmountOnExit={true} appear={true}>
             <>
@@ -70,5 +70,5 @@ export default ({
                 <polyline points='2,10 12,18 28,2'/>
             </svg>
         </button>
-    </div>;
+    </div>);
 }

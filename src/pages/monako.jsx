@@ -4,6 +4,8 @@ import {BrowserRouter} from "react-router-dom";
 import "../style/common";
 import "../style/iconfont";
 import App from "../pages/App";
-ReactDom.render(<BrowserRouter basename="/">
+
+const render = module.hot ? ReactDom.render : ReactDom.hydrate;
+render(<BrowserRouter basename="/">
     <App />
 </BrowserRouter>, document.getElementById("monako"));

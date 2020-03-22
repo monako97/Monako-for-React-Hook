@@ -91,7 +91,7 @@ const Comment = ({id}) => {
         });
         else Toast.danger("未登录",3000,true);
     },[commentList]);
-    return <>
+    return (<>
         <div className={commentStyle.comment}>
             <h4 className={commentStyle.comment_header}>
                 <span className={commentStyle.count}>{totalSize}</span>条评论
@@ -147,6 +147,6 @@ const Comment = ({id}) => {
                     <div className={commentStyle.page_tool_bar}>没有了...</div>
             }
         </div>
-    </>
+    </>);
 };
 export default Comment;

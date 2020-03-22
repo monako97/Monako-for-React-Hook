@@ -75,7 +75,7 @@ const MarkdownEdit = ({user,callback}) => {
     const save = useCallback(value => {
         console.log("save",value);
     },[]);
-    return <>
+    return (<>
         <CSSTransition
             in={showProgress}
             timeout={200}
@@ -124,6 +124,6 @@ const MarkdownEdit = ({user,callback}) => {
             最多输入{count}字!
             <BubblyButton callback={() => submit()} text={user?"Submit":"Login"} />
         </p>
-    </>
+    </>);
 };
 export default MarkdownEdit;

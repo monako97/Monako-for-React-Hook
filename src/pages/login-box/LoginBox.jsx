@@ -50,7 +50,7 @@ const LoginBox = (props, ref) => {
         // 当没有用户登录时才执行张开动画
         if (!state.userInfo) OutTransaction();
     },[]);
-    return <div className={loginStyle.login} onClick={event=>event.stopPropagation()}>
+    return (<div className={loginStyle.login} onClick={event=>event.stopPropagation()}>
         <div className={loginStyle.container} style={loginFormStyle}>
             {/* 没有用户登录信息时显示控制面板 */}
             <CSSTransition in={ !state.userInfo }
@@ -109,6 +109,6 @@ const LoginBox = (props, ref) => {
 
             </div>
         </div>
-    </div>
+    </div>);
 };
 export default forwardRef(LoginBox);

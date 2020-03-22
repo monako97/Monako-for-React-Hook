@@ -24,10 +24,14 @@ export default () => {
                             return <Route path={e.path} strict
                                           exact={e.exact}
                                           component={e.component}
+                                          location={location}
+                                          onEnter={()=>{
+                                              console.log("sasaa")
+                                          }}
                                           key={i}/>
                             })
                     }
-                    <Redirect exact from="/" to="/home"/>
+                    <Redirect from="/" to={"/home"} />
                 </AnimatedSwitch>
             </Suspense>
             <footer>
@@ -35,5 +39,5 @@ export default () => {
                 <article>MONAKO</article>
             </footer>
         </Context.Provider>
-    )
+    );
 }

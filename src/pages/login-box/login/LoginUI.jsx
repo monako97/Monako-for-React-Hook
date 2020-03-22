@@ -26,7 +26,7 @@ export default ({
                     submit,
                     disabled
                 }) => {
-    return <div className={loginStyle.form}>
+    return (<div className={loginStyle.form}>
         {/* 需要根据登录类型使用对应的验证 */}
         {/* 点击显示登录类型 */}
         <label htmlFor="username"
@@ -84,5 +84,5 @@ export default ({
                 <polyline points='2,10 12,18 28,2'/>
             </svg>
         </button>
-    </div>;
+    </div>);
 }

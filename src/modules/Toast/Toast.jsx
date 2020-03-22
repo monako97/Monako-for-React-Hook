@@ -19,7 +19,7 @@ const Toast = ({notice,callback,duration,onClose}) => {
             _timer = null;
         },duration);
     }
-    return <>
+    return (<>
         { notice.type === "loading" ? <Loading/> :
             <TransitionGroup component={null} appear={true}>
                 { show ? <CSSTransition
@@ -33,6 +33,6 @@ const Toast = ({notice,callback,duration,onClose}) => {
                     </div>
                 </CSSTransition> : null }
             </TransitionGroup> }
-    </>
+    </>);
 };
 export default Toast;

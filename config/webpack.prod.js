@@ -2,9 +2,9 @@ const merge = require('webpack-merge');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const common = require('./webpack.common');
-
+const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
 module.exports = merge(common, {
-    devtool:"cheap-module-source-map",
+    // devtool:"cheap-module-source-map",
     optimization: {
         splitChunks: {
             chunks: "async",
@@ -49,7 +49,8 @@ module.exports = merge(common, {
                         return `${file}.LICENSE`;
                     },
                     banner(commentsFile) {
-                        return `monako ${commentsFile}`;
+                        // return `monako ${commentsFile}`;
+                        return null;
                     },
                 }, // 移除注释
                 uglifyOptions: {
@@ -79,5 +80,12 @@ module.exports = merge(common, {
                 canPrint: true
             })
         ]
-    }
+    },
+    plugins: [
+        // 代码体积分析模块
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false, // 不使用8888端口
+            analyzerMode: "static" // 为分析生成静态的html文件
+        })
+    ]
 });

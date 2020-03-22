@@ -13,7 +13,7 @@ const BubblyButton = ({text,callback}) => {
             l = null;
         },700);
     },[callback]);
-    return <button className={clsName}
-    onClick={e=>animateButton(e)}>{text?text:"Submit"}</button>
+    return (<button className={clsName}
+                    onClick={e=>animateButton(e)}>{text?text:"Submit"}</button>);
 };
 export default BubblyButton;

@@ -1,9 +1,12 @@
-import React from "react";
+import React,{useEffect} from "react";
 const Class = () => {
-    return <main className='class-container'>
+    useEffect(()=>{
+        document.title = "分类";
+    },[]);
+    return (<main className='class-container'>
         <article>
             <h1>Class</h1>
         </article>
-    </main>
+    </main>);
 };
 export default Class;

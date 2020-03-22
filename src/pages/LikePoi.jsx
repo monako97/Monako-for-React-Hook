@@ -21,6 +21,6 @@ const LikePoi = ({id,like,callback,count}) => {
                  onClick={() => tap()}/>
              <div className={likePoi.count}>{counts}</div>
         </div>
-    )
+    );
 };
 export default LikePoi;

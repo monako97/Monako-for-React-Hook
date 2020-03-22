@@ -1,4 +1,4 @@
-import React,{useState,useMemo,useCallback,useContext} from "react";
+import React, {useState, useMemo, useCallback, useContext, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import http from "../unit/httpUnit";
 import timeLineStyle from "../style/timeLineStyle.scss";
@@ -20,13 +20,16 @@ const TimeLine = () => {
             }
         });
     },[]);
+    useEffect(()=>{
+        document.title = "时间轴";
+    },[]);
     const handleClick = useCallback(line => {
         history.push({
             pathname: `detail/${line.id}`
         });
         document.body.scrollTop = 0;
     },[]);
-    return <main className='timeline-container'>
+    return (<main className='timeline-container'>
         <article>
             <div className={timeLineStyle.timeline_box}>
                 <div className={`${timeLineStyle.wrapper} ${timeLineStyle.clear_fix_time}`}>
@@ -55,6 +58,6 @@ const TimeLine = () => {
                 </div>
             </div>
         </article>
-    </main>
+    </main>);
 };
 export default TimeLine;

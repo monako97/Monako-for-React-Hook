@@ -5,7 +5,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
-
 module.exports = {
     entry: [
         "core-js/stable",
@@ -25,8 +24,8 @@ module.exports = {
                 removeAttributeQuotes: true,
                 useShortDoctype: true
             },
-            template: path.resolve(__dirname, '../src/html/monako.html'),
-            filename: 'monako.html',
+            template: path.resolve(__dirname, '../src/html/index.html'),
+            filename: 'index.html',
             hash: false,
             chunksSortMode: 'none'
         }),

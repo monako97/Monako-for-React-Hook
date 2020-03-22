@@ -41,7 +41,7 @@ export default function HeaderBar() {
             document.body.scrollTop = 0;
         }
     };
-    return <>
+    return (<>
         <header className={headerStyle.header}>
             <h1>
                 <a onClick={() => navTap({to: '/home'})}>Monako</a>
@@ -49,10 +49,10 @@ export default function HeaderBar() {
             {/* nav菜单 */}
             <svg className={`${headerStyle['ham']} ${open?headerStyle['active']:''}`} viewBox="0 0 100 100" width="50" onClick={() => setOpen(!open)}>
                 <path className={`${headerStyle['line']} ${headerStyle['top']}`}
-                    d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20" />
+                      d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20" />
                 <path className={`${headerStyle['line']} ${headerStyle['middle']}`} d="m 30,50 h 40" />
                 <path className={`${headerStyle['line']} ${headerStyle['bottom']}`}
-                    d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20" />
+                      d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20" />
             </svg>
             <nav className={headerStyle['nav']}>
                 {
@@ -65,5 +65,5 @@ export default function HeaderBar() {
             {/* 头像：用户数据不存在时，url为空 */}
             <Avatar imgSrc={state.userInfo?state.userInfo.avatar:null}/>
         </header>
-    </>
+    </>);
 }
