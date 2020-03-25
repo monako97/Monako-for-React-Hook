@@ -1,5 +1,5 @@
 import React from "react";
-import HomeStyle from "../../style/home-container.scss";
+import HomeStyle from "./home-container.scss";
 import {AutoSizer, InfiniteLoader, List} from "react-virtualized";
 export default ({list, isRowLoaded, onRowsRendered, rowHeight, rowRenderer}) => {
     return (<main className={HomeStyle.home_container}>

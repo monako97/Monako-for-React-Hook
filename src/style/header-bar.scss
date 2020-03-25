@@ -66,12 +66,16 @@ $height-color: rgba(233, 136, 124, 1);
         .middle {
             stroke-dasharray: 40, 142;
             transform-origin: 50%;
-            transition: transform 250ms;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transition: transform 250ms, stroke-dashoffset 250ms;
         }
 
         .bottom {
             stroke-dasharray: 40, 85;
             transform-origin: 50%;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
             transition: transform 250ms, stroke-dashoffset 250ms;
         }
     }

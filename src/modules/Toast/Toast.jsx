@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './style.scss';
 import {CSSTransition, TransitionGroup} from "react-transition-group";
-import Loading from "../../pages/Loading";
+import Loading from "../Loading/Loading";
 const icons = {
     info: 'iconinfo',
     success: 'iconsuccess',

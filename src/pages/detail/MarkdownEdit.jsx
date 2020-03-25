@@ -1,16 +1,18 @@
 import React, {useState, useCallback, useContext} from "react";
 import Editor from 'for-editor';
-import markdownEditStyle from "../style/markDownEditStyle.scss";
-import BubblyButton from "./BubblyButton";
-import {changDaiLog} from "../store/action";
-import http from "../unit/httpUnit";
-import Toast from "../modules/Toast/controller";
-import Context from "../store/Context";
-import {ProgressBar} from "../modules/ProgressBar/ProgressBar";
+import markdownEditStyle from "./markDownEditStyle.scss";
+import BubblyButton from "../../modules/BubblyButton/BubblyButton";
+import {changDaiLog} from "../../store/action";
+import http from "../../unit/httpUnit";
+import Toast from "../../modules/Toast/controller";
+import Context from "../../store/Context";
+import {ProgressBar} from "../../modules/ProgressBar/ProgressBar";
 import {CSSTransition} from "react-transition-group";
-
-const MarkdownEdit = ({user,callback}) => {
-    const {dispatch} = useContext(Context);
+const equal = (prevProps, nextProps) => {
+    return prevProps.user === nextProps.user;
+};
+const MarkdownEdit = ({callback}) => {
+    const {state, dispatch} = useContext(Context);
     // 输入内容
     const [info,setInfo] = useState("");
     // 最大输入长度
@@ -21,7 +23,7 @@ const MarkdownEdit = ({user,callback}) => {
             setInfo(value);
             setCount(500 - value.length);
         }
-    },[count]);
+    },[count, info]);
     // 显示进度条
     const [showProgress, setShowProgress] = useState(false);
     // 上传进度
@@ -60,7 +62,7 @@ const MarkdownEdit = ({user,callback}) => {
     },[info]);
     // 提交信息
     const submit = useCallback(() => {
-        if (user){
+        if (state.userInfo){
             // 用户登录时
             callback(info).then(status => {
                 // 当提交成功时返回 true
@@ -70,7 +72,7 @@ const MarkdownEdit = ({user,callback}) => {
             // 用户未登录时
             dispatch(changDaiLog(true));
         }
-    },[info,user,callback]);
+    },[info,callback]);
     // 保存
     const save = useCallback(value => {
         console.log("save",value);
@@ -107,7 +109,7 @@ const MarkdownEdit = ({user,callback}) => {
                         h2: false, // h2
                         h3: false, // h3
                         h4: true, // h4
-                        img: true, // 图片
+                        img: !!state.userInfo, // 图片
                         link: true, // 链接
                         code: true, // 代码块
                         preview: false, // 预览
@@ -122,7 +124,7 @@ const MarkdownEdit = ({user,callback}) => {
                 }/>
         <p className={markdownEditStyle.info}>
             最多输入{count}字!
-            <BubblyButton callback={() => submit()} text={user?"Submit":"Login"} />
+            <BubblyButton callback={submit} text={state.userInfo?"Submit":"Login"} />
         </p>
     </>);
 };

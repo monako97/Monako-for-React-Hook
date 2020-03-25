@@ -29,12 +29,13 @@
       }
       >p:hover{
         color: #F56C6C;
-        transform: translateY(-5px);
+        transform: translateY(-5px) translateZ(0);
       }
     }
   }
   .comment_list{
     padding: 10px;
+    //width: calc(100% - 20px)!important;
     overflow: hidden;
     >.avatar{
       width: 60px;
@@ -102,6 +103,11 @@
       border-color: #F56C6C;
     }
   }
+  .comment_list:global(.route-appear),
+  .comment_list:global(.route-enter){
+    position: relative;
+    width: calc(100% - 20px)!important;
+  }
   .page_tool_bar{
     text-align: center;
     width: 150px;
@@ -116,13 +122,13 @@
     display: block;
     transition: transform 0.2s;
     border-bottom: #F56C6C 1px solid;
-    transform: translateX(-100%);
+    transform: translateX(-100%) translateZ(0);
   }
   .page_tool_bar:hover{
     color: #F56C6C;
   }
   .page_tool_bar:hover::after{
-    transform: translateX(0);
+    transform: translateX(0) translateZ(0);
   }
 }
 @media (max-width: 1450px) {

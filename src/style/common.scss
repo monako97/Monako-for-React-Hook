@@ -63,24 +63,13 @@
 }
 /* 自定义动画 */
 @keyframes :global(error) {
-  from,
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
+  from, to {
     transform: translate3d(0, 0, 0);
   }
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    -webkit-transform: translate3d(-10px, 0, 0);
+  10%, 30%, 50%, 70%, 90% {
     transform: translate3d(-10px, 0, 0);
   }
-  20%,
-  40%,
-  60%,
-  80% {
-    -webkit-transform: translate3d(10px, 0, 0);
+  20%, 40%, 60%, 80% {
     transform: translate3d(10px, 0, 0);
   }
 }
@@ -96,7 +85,6 @@
     padding: 0;
     background: none;
   }
-
   body,
   html {
     height: 100%;
@@ -111,6 +99,9 @@
     font-size: 14px;
     height: 100%;
     overflow-y: auto;
+    img,button{
+      outline: 1px solid transparent; /* 消除锯齿 */
+    }
     a {
       color: rgba(54, 52, 37, 1.00);
       text-decoration: none;
@@ -223,14 +214,14 @@
   .route-exit-active,
   .route-exit-done{
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px) translateZ(0);
   }
   .route-appear-active,
   .route-appear-done,
   .route-enter-active,
   .route-enter-done{
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateZ(0);
   }
   .route-enter-done{
     transform: none;
@@ -240,14 +231,14 @@
   .down-exit-active,
   .down-exit-done{
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translateY(-100%) translateZ(0);
   }
   .down-appear-active,
   .down-appear-done,
   .down-enter-active,
   .down-enter-done{
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateZ(0);
   }
   .down-enter-done{
     transform: none;

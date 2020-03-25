@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./style.scss";
 export const ProgressBar = ({ progress }) => {
+
     return (<div className={style.progress_bar_box}>
         <p className={style.info}>{ progress }</p>
         <div className={style.progress_bar}>

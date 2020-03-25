@@ -1,7 +1,14 @@
 import React,{useCallback,useState} from "react";
-import bubblyButtonStyle from "../style/bubblyButton.scss";
+import bubblyButtonStyle from "./bubblyButton.scss";
+
+// diff
+const equal = (prevProps, nextProps) => {
+    return prevProps.text === nextProps.text;
+};
+
 const BubblyButton = ({text,callback}) => {
     const [clsName, setClsName] = useState(bubblyButtonStyle.bubbly_button);
+
     const animateButton = useCallback(e => {
         e.preventDefault;
         setClsName(bubblyButtonStyle.bubbly_button);

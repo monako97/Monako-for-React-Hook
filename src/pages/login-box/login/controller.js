@@ -1,6 +1,6 @@
 import {useCallback,useState,useMemo,useContext} from "react";
 import Context from "../../../store/Context";
-import loginStyle from "../../../style/login.scss";
+import loginStyle from "../login.scss";
 import {RULES_EMAIL, RULES_PASSWORD, RULES_USERNAME} from "../../../rules/rules";
 import lineAnimation from "../lineAnimation";
 import http from "../../../unit/httpUnit";

@@ -49,7 +49,9 @@ tar -zxvf nginx-1.17.7.tar.gz
 
 ```shell
 cd nginx-1.17.7/
-./configure --with-stream
+# --with-pcre=pcre路径 --with-zlib=zlib路径 --with-openssl=openssl路径
+# 支持tcp转发和https
+./configure --prefix=/usr/local/nginx --with-stream --with-http_stub_status_module --with-http_ssl_module
 make
 make install
 ```

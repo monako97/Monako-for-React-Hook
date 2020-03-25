@@ -2,17 +2,21 @@ const path = require("path");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
+const WebpackBar = require('webpackbar');
 module.exports = {
-    entry: [
-        "core-js/stable",
-        "regenerator-runtime/runtime",
-        path.resolve(__dirname, "../src/pages/monako.jsx"),
-    ],
+    entry: {
+        main: path.resolve(__dirname, "../src/pages/monako.jsx") // 需要事先编译的模块，写在 entry 里
+    },
     plugins: [
-        new CleanWebpackPlugin(),
+        // 代码体积分析模块
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false, // 不使用8888端口
+            analyzerMode: "static", // 为分析生成静态的html文件
+            reportFilename: 'report.html',
+        }),
         new HtmlWebpackPlugin({
             title: 'Monako',
             minify: {
@@ -40,15 +44,18 @@ module.exports = {
             {from: path.resolve(__dirname, '../src/markdown'), to: 'markdown'},
             {from: path.resolve(__dirname, '../src/error'), to: './'},
         ]),
-        // 编译显示进度条
-        new ProgressBarPlugin(),
-        // 下面是下载的插件的配置
+        // 启用gzip
         new CompressionWebpackPlugin({
             algorithm: 'gzip', // 可以是 (buffer, cb) => cb(buffer) 或者是使用 zlib 里面的算法的 {String}
             test: new RegExp('\\.(' + ['js', 'css'].join('|') + ')$'), // 处理所有匹配此 {RegExp} 的资源
             threshold: 1024, // 只处理比这个值大的资源。按字节计算 1k
             minRatio: 0.8, // 只有压缩率比这个值小的资源才会被处理
             deleteOriginalAssets: false // 是否删除原资源
+        }),
+        // 美化进度条
+        new WebpackBar({
+            name: "玩命编译中",
+            color: "#8559ff4d"
         })
     ],
     resolve: {
@@ -68,7 +75,7 @@ module.exports = {
                         options: {
                             hmr: process.env.NODE_ENV === 'development',
                             modules: true,
-                            getLocalIdent: (context, localIdentName, localName, options) => {
+                            getLocalIdent: (context, localIdentName, localName) => {
                                 return localName
                             },
                             publicPath: '../'
@@ -110,8 +117,9 @@ module.exports = {
             },
             {
                 test: /\.js|.jsx$/,
-                loader: 'babel-loader',
                 exclude: /node_modules/, // 排除项
+                loader: ['babel-loader'],
+                // include: path.resolve(__dirname, 'src'),
             }
         ]
     },
@@ -122,3 +130,5 @@ module.exports = {
         publicPath: '/'
     }
 };
+// 清理模块
+if(process.env.NODE_ENV === 'production') module.exports.plugins.unshift(new CleanWebpackPlugin());

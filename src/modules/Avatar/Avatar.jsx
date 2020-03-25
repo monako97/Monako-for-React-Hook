@@ -1,5 +1,6 @@
 import React from "react";
-import avatarStyle from "../style/avatarStyle.scss";
+import avatarStyle from "./avatarStyle.scss";
+const equal = (prevProps, nextProps) => prevProps.imgSrc === nextProps.imgSrc;
 const Avatar = ({imgSrc, style}) => {
     return (<div className={avatarStyle.avatar}>
         <img src={imgSrc ? imgSrc : "../../static/images/avatar.png"} style={{
@@ -8,4 +9,4 @@ const Avatar = ({imgSrc, style}) => {
         }} alt=""/>
     </div>);
 };
-export default Avatar;
+export default React.memo(Avatar, equal);

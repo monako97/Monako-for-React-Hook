@@ -43,9 +43,9 @@
       box-shadow: 0 26px 40px -20px rgba(204, 171, 218, 0.5);
     }
     .card_bg:hover.card_bg:after{
-      top: 10%;
       background-size: cover;
-      transform: scale(0.95);
+      transform: translateY(10%) scale(0.95) translateZ(0);
+      transform-style: preserve-3d;
       filter: blur(10px) brightness(80%) opacity(0.8);
     }
     .title {

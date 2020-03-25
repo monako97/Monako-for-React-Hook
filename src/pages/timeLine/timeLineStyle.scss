@@ -41,7 +41,7 @@
       }
     }
     >ul{
-      background: url("../static/images/timeline_line.png") repeat-y center;
+      background: url("../../static/images/timeline_line.png") repeat-y center;
       >li{
         float:right;
         width:50%;
@@ -71,16 +71,16 @@
             left:0;
             background:#3498db;
             transition:transform .5s;
-            transform:scaleX(0);
+            transform:scaleX(0) translateZ(0);
             transform-origin:right;
           }
           h4:hover{
             color:#95a5a6;
             transition:all 1s;
-            transform:translateY(-15px);
+            transform:translateY(-15px) translateZ(0);
           }
           h4:hover::after{
-            transform:scaleX(1);
+            transform:scaleX(1) translateZ(0);
             transform-origin:left;
           }
           p{
@@ -97,7 +97,7 @@
         }
       }
       >li:before{
-        background:url("../static/images/timeline_poi.png") no-repeat center center;
+        background:url("../../static/images/timeline_poi.png") no-repeat center center;
         left:-8px;
         top:12px;
         content:"";
@@ -118,7 +118,7 @@
         }
       }
       >li:nth-child(2n):before{
-        background:url("../static/images/timeline_line.png") no-repeat center center;
+        background:url("../../static/images/timeline_line.png") no-repeat center center;
         right:-69px;
         top:12px;
         left:auto;

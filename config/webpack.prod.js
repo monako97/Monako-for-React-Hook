@@ -2,14 +2,13 @@ const merge = require('webpack-merge');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const common = require('./webpack.common');
-const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
 module.exports = merge(common, {
     // devtool:"cheap-module-source-map",
     optimization: {
         splitChunks: {
             chunks: "async",
             minSize: 30000,
-            minChunks: 1,
+            minChunks: 2,
             maxAsyncRequests: 5,
             maxInitialRequests: 3,
             automaticNameDelimiter: '~',
@@ -81,11 +80,5 @@ module.exports = merge(common, {
             })
         ]
     },
-    plugins: [
-        // 代码体积分析模块
-        new BundleAnalyzerPlugin({
-            openAnalyzer: false, // 不使用8888端口
-            analyzerMode: "static" // 为分析生成静态的html文件
-        })
-    ]
+    plugins: []
 });

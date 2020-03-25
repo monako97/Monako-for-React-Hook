@@ -22,22 +22,17 @@ const socketUnit = () => {
     const reConnectTime = 5000;
     // 重连次数
     const [reConnectCount, setReConnectCount] = useState(5);
-    const { dispatch } = React.useContext(Context);
-
+    const { state, dispatch } = React.useContext(Context);
     // socket实例
     const [socket, setSocket] = useState(null);
     useEffect(() => {
         init();
         return ()=>{
             // 清除计时器
-            if (heartTimer) {
-                clearInterval(heartTimer);
-                setHeartTimer(null);
-            }
-            if (reConnectTimer) {
-                clearInterval(reConnectTimer);
-                setReConnectTimer(null);
-            }
+            clearInterval(heartTimer);
+            setHeartTimer(null);
+            clearInterval(reConnectTimer);
+            setReConnectTimer(null);
         }
     },[]);
     useEffect(() => {
@@ -49,9 +44,7 @@ const socketUnit = () => {
         } else {
             try{
                 setSocket(new WebSocket(`ws://${url}`));
-            }catch (e) {
-
-            }
+            }catch (e) { }
         }
     },[reConnectCount]);
     const func = useCallback(()=>{
@@ -79,10 +72,10 @@ const socketUnit = () => {
                         break;
                     case "init":
                         Toast.primary(info.message);
+                        if (state.userInfo) dispatch(changeUserInfo(null));
                         break;
                     case "loginOut":
-                        // 当Notification的permission为granted时，才可以使用消息提醒
-                        if (Notification.permission === "granted") new Notification("用户已登出", { body: info.message});
+                        NotificationUtil("用户已登出", { body: info.message});
                         Toast.primary(info.message);
                         // 登录失效，清除用户信息
                         dispatch(changeUserInfo(null));
@@ -140,6 +133,7 @@ const socketUnit = () => {
             init();
         }, reConnectTime));
     },[reConnectTime,reConnectTimer,reConnectCount,reConnect]);
+    return { socket };
 };
 
 export default socketUnit;

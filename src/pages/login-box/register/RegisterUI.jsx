@@ -1,5 +1,5 @@
 import React from "react";
-import loginStyle from "../../../style/login.scss";
+import loginStyle from "../login.scss";
 import lineAnimation from "../lineAnimation";
 
 export default ({

@@ -2,10 +2,10 @@ import React, {useState, useEffect,useContext} from "react";
 import { useHistory } from "react-router";
 import headerStyle from "../style/header-bar.scss";
 import {changDaiLog, changeUserInfo} from "../store/action";
-import Avatar from "./Avatar";
+import Avatar from "../modules/Avatar/Avatar";
 import Context from "../store/Context";
 import SocketUnit from "../unit/SocketUnit";
-export default function HeaderBar() {
+const HeaderBar = () => {
     new SocketUnit();
     const history = useHistory();
     const {state, dispatch} = useContext(Context);
@@ -67,3 +67,4 @@ export default function HeaderBar() {
         </header>
     </>);
 }
+export default React.memo(HeaderBar);

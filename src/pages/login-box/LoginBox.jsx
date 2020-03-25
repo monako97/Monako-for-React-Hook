@@ -1,13 +1,18 @@
 import React, {useState, useCallback, useEffect,useContext, useImperativeHandle, forwardRef, Suspense} from "react";
 import {CSSTransition} from "react-transition-group";
-import loginStyle from "../../style/login.scss";
+import loginStyle from "./login.scss";
 import Context from "../../store/Context";
 import lineAnimation from "./lineAnimation";
-const Login = React.lazy(() => import(/* webpackChunkName: "Login" */ "./login/Login"));
-const Register = React.lazy(() => import(/* webpackChunkName: "Register" */ "./register/Register"));
-const ForgetPassword = React.lazy(() => import(/* webpackChunkName: "ForgetPassword" */ "./forget_password/ForgetPassword"));
+import Login from "./login/Login";
+import Register from "./register/Register";
+import ForgetPassword from "./forget_password/ForgetPassword";
+// const Login = React.lazy(() => import(/* webpackChunkName: "Login" */ "./login/Login"));
+// const Register = React.lazy(() => import(/* webpackChunkName: "Register" */ "./register/Register"));
+// const ForgetPassword = React.lazy(() => import(/* webpackChunkName: "ForgetPassword" */ "./forget_password/ForgetPassword"));
 
-const LoginBox = (props, ref) => {
+
+
+const LoginBox = (_props, ref) => {
     const {state} = useContext(Context);
     const [nav] = useState([
         {name: "登录", path: "Login"},
@@ -85,13 +90,11 @@ const LoginBox = (props, ref) => {
                     </defs>
                     <path id="ling" d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
                 </svg>
-                <Suspense fallback={null}>
-                    {/* 登录 */}
-                    <CSSTransition in={active === "Login"}
-                                   timeout={300} classNames="route" unmountOnExit={true} appear={true}>
-                        <Login InTransaction={InTransaction} OutTransaction={OutTransaction}/>
-                    </CSSTransition>
-                </Suspense>
+                {/* 登录 */}
+                <CSSTransition in={active === "Login"}
+                               timeout={300} classNames="route" unmountOnExit={true} appear={true}>
+                    <Login InTransaction={InTransaction} OutTransaction={OutTransaction}/>
+                </CSSTransition>
                 <Suspense fallback={null}>
                     {/* 注册 */}
                     <CSSTransition in={active === "Register"}

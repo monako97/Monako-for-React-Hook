@@ -1,9 +1,9 @@
 import React, {useState, useMemo, useCallback, useContext, useEffect} from "react";
 import {useHistory} from "react-router-dom";
-import http from "../unit/httpUnit";
-import timeLineStyle from "../style/timeLineStyle.scss";
-import Toast from "../modules/Toast/controller";
-import Context from "../store/Context";
+import http from "../../unit/httpUnit";
+import timeLineStyle from "./timeLineStyle.scss";
+import Toast from "../../modules/Toast/controller";
+import Context from "../../store/Context";
 const TimeLine = () => {
     const {state} = useContext(Context);
     const [data, setData] = useState([]);

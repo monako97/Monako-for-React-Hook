@@ -1,4 +1,4 @@
-import {CHANGE_DAILOG, CHANGE_MARKDOWN, CHANGE_USERINFO} from "./actionTypes";
+import {CHANGE_DAILOG, CHANGE_USERINFO} from "./actionTypes";
 import http from "../unit/httpUnit";
 export default (state, action) => {
     // reducer只接收state，不能改变state

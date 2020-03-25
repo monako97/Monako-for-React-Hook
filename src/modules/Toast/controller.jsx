@@ -15,9 +15,7 @@ const notice = (type, content, duration = 4000, onClose) => {
         _toastTime = null;
     };
     // 当 duration 为 -1 时，显示伪不自动关闭
-    if (duration !== -1) {
-        _toastTime = setTimeout(delDom,duration + 300);
-    } // +300 为离开动画所需要的时间
+    if (duration !== -1) _toastTime = setTimeout(delDom,duration + 300); // +300 为离开动画所需要的时间
     render(<Toast callback={delDom}
                   notice={{content,type}}
                   onClose={onClose}

@@ -13,6 +13,7 @@
       position: absolute;
       width: 320px;
       border-radius: 8px 0 0 8px;
+      user-select: none;
       .select_text,.eula{
         cursor: pointer;
         overflow: hidden;
@@ -23,7 +24,7 @@
         content: "";
         display: block;
         border-bottom: 1px solid #e9887c;
-        transform: translateX(-100%);
+        transform: translateX(-100%) translateZ(0);
       }
       .select_text::after{
         border-bottom: 3px solid #e9887c;
@@ -50,7 +51,7 @@
         color: #e9887c;
       }
       .eula:hover::after,.select_text:hover::after{
-        transform: translateX(0);
+        transform: translateX(0) translateZ(0);
       }
     }
     .right {
@@ -218,7 +219,7 @@
           position: absolute;
           left: 50%;
           top: 50%;
-          transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%) translateZ(0);
           width: 70%;
           height: 40%;
           display: flex;
@@ -245,7 +246,7 @@
           right: 50%;
           top: 56%;
           margin: auto;
-          transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%) translateZ(0);
           stroke-width: 2px;
           /* 利用stroke的虚线和偏移值达到加载的动画效果 */
           stroke-dasharray: 36px;
@@ -309,7 +310,7 @@
 }
 @keyframes :local(floating__point){
   to{
-    transform: translate(0, -1rem);
+    transform: translate(0, -1rem) translateZ(0);
   }
 }
 @keyframes :local(show){
