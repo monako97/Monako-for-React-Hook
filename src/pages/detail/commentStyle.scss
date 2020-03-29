@@ -35,7 +35,6 @@
   }
   .comment_list{
     padding: 10px;
-    //width: calc(100% - 20px)!important;
     overflow: hidden;
     >.avatar{
       width: 60px;
@@ -53,18 +52,41 @@
         cursor: pointer;
       }
       p{
-        font-size: 10px!important;
+        font-size: 12px!important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
+    }
+    .comment_list{
+      padding-right: 0;
+      padding-left: 0;
+      padding-top: 0;
+    }
+    .comment_list:last-child{
+      padding-top: 0;
     }
     .comment_context{
       position: relative;
       float: right;
       background-color: rgba(255, 255, 255, 0.3);
       border-radius: 8px;
-      width: calc(100% - 90px);
+      width: calc(100% - 100px);
       min-height: 45px;
-      padding: 10px 10px 20px;
-      border: 1px dashed gray;
+      padding: 10px 15px 0;
+      border: 1px solid rgba(88, 82, 96, 0.2);
+      overflow: hidden;
+      .comment_context{
+        width: calc(100% - 75px);
+        border: 1px dashed transparent;
+        padding: 10px 0 0;
+        border-radius: 0;
+        background-color: transparent;
+        .comment_tool{
+          width: 100%;
+          border-bottom: none;
+        }
+      }
       .comment_info{
         height: 100%;
         p{
@@ -74,10 +96,18 @@
           }
         }
       }
+      .comment_info:before{
+        content: attr(comment_user);
+        display: block;
+        float: left;
+        color: #409EFF;
+        cursor: pointer;
+      }
       .comment_tool{
-        position: absolute;
-        bottom: 0;
-        width: calc(100% - 20px);
+        position: relative;
+        width: 100%;
+        border-bottom: 1px solid rgba(88, 82, 96, 0.2);
+        overflow: hidden;
         time{
           font-size: 10px;
           color: #5f5f5f;
@@ -88,6 +118,7 @@
           right: 0;
           text-align: center;
           margin: 0;
+          user-select: none;
           >div{
             display: inline-block;
           }
@@ -96,17 +127,59 @@
             margin-left: 20px;
             font-size: 10px;
           }
+          span:hover{
+            color: #F56C6C;
+          }
         }
       }
+      .comment_tool:after{
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        transform: translate3d(-100%,0,0);
+        border-bottom: 1px solid #F56C6C;
+        transition: transform .3s;
+      }
     }
-    .comment_context:hover{
-      border-color: #F56C6C;
+    >.comment_context:hover{
+      >.comment_tool:after{
+        transform: translate3d(0,0,0);
+      }
+      >.comment_tool.parent:after{
+        transform: translate3d(-100%,0,0);
+      }
+    }
+    :global(.for-container){
+      position: relative!important;
+      width: calc(100% - 40px)!important;
+    }
+    :global(.for-toolbar){
+      display: flex!important;
+    }
+    :global(.for-editor){
+      display: flex!important;
+    }
+    :global(.for-container+p){
+      button{
+        right: 20px!important;
+      }
+    }
+    :global(.for-panel){
+      text-align: initial;
     }
   }
   .comment_list:global(.route-appear),
   .comment_list:global(.route-enter){
     position: relative;
     width: calc(100% - 20px)!important;
+  }
+  .comment_list{
+    .comment_list:global(.route-appear),
+    .comment_list:global(.route-enter){
+      width: 100%!important;
+    }
   }
   .page_tool_bar{
     text-align: center;
@@ -149,10 +222,36 @@
 @media (max-width: 700px) {
   .comment {
     margin: 50px 55px;
+    .comment_list{
+      .comment_list{
+        .avatar{
+          display: none;
+        }
+        .comment_context{
+          width: 100%;
+          .comment_info:before{
+            content: attr(username) + attr(comment_user);
+          }
+        }
+      }
+    }
   }
 }
 @media (max-width: 580px) {
   .comment {
     margin: 50px 20px;
+    .comment_list{
+      .comment_list{
+        .avatar{
+          display: none;
+        }
+        .comment_context{
+          width: 100%;
+          .comment_info:before{
+            content: attr(username) + attr(comment_user);
+          }
+        }
+      }
+    }
   }
 }

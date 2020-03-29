@@ -123,9 +123,10 @@ const MarkdownEdit = ({callback}) => {
                     }
                 }/>
         <p className={markdownEditStyle.info}>
-            最多输入{count}字!
+            最多还能输入{count}字!
             <BubblyButton callback={submit} text={state.userInfo?"Submit":"Login"} />
         </p>
+
     </>);
 };
 export default MarkdownEdit;
