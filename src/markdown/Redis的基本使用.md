@@ -4,8 +4,7 @@
 
 ```shell
 cd redis/
-make
-make install
+make PREFIX=/usr/local/redis install
 ```
 
 #### 2. 配置环境变量

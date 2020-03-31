@@ -82,6 +82,13 @@
         padding: 10px 0 0;
         border-radius: 0;
         background-color: transparent;
+        .comment_info{
+          p{
+            img{
+              max-height: 100px;
+            }
+          }
+        }
         .comment_tool{
           width: 100%;
           border-bottom: none;
@@ -248,7 +255,7 @@
         .comment_context{
           width: 100%;
           .comment_info:before{
-            content: attr(username) + attr(comment_user);
+            content: attr(username) + attr(comment_user) + "：";
           }
         }
       }

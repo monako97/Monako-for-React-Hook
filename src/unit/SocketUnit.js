@@ -80,6 +80,10 @@ const socketUnit = () => {
                         // 登录失效，清除用户信息
                         dispatch(changeUserInfo(null));
                         break;
+                    case "message":
+                        // 收到消息
+                        Toast.primary(info.message);
+                        break;
                     default:
                         break;
                 }

@@ -92,7 +92,7 @@ const Comment = ({id}) => {
                     setCommentList([...commentList]);
                 } else {
                     setCommentList(
-                        [{
+                        [...commentList,{
                             id: response.data.result,
                             info: info,
                             create_time: new Date().getTime(),
@@ -105,7 +105,7 @@ const Comment = ({id}) => {
                             comment_id: showComment,
                             parent_id: 0,
                             child: []
-                        },...commentList]
+                        }]
                     );
                 }
                 Toast.success(response.data.message,3000,true);
@@ -201,17 +201,15 @@ const Comment = ({id}) => {
                                                     const child_like = state.userInfo && child.likes && child.likes.split(",").indexOf(String(state.userInfo.id))!==-1;
                                                     {/* 评论内容 */}
                                                     const child_html = markdownParser.render(child.info);
+                                                    const _username = item.username === child.comment_user ? child.username + "： " : child.username;
+                                                    const _comment_user = item.username === child.comment_user ? '' : ` 回复 ${child.comment_user}： `;
                                                     if (showMore.indexOf(item.id) === -1){
                                                         if (s === 3) return (<CSSTransition
                                                             key={s}
                                                             timeout={300}
                                                             classNames="route"
                                                             appear={true}>
-                                                            <div className={commentStyle.page_tool_bar} onClick={()=>{
-                                                                console.log(showMore);
-                                                                setShowMore([...showMore,item.id]);
-
-                                                            }}>显示剩余的{_child.length - 3}条回复</div>
+                                                            <div className={commentStyle.page_tool_bar} onClick={() => setShowMore([...showMore,item.id])}>显示剩余的{_child.length - 3}条回复</div>
                                                         </CSSTransition>);
                                                         if (s > 3) return null;
                                                     }
@@ -226,7 +224,10 @@ const Comment = ({id}) => {
                                                                 <p>{child.username}</p>
                                                             </div>
                                                             <div className={commentStyle.comment_context}>
-                                                                <div className={commentStyle.comment_info} username={child.username} comment_user={`回复 ${child.comment_user}：`} dangerouslySetInnerHTML={{ __html: child_html }}/>
+                                                                <div className={commentStyle.comment_info}
+                                                                     username={_username}
+                                                                     comment_user={_comment_user}
+                                                                     dangerouslySetInnerHTML={{ __html: child_html }}/>
                                                                 {/* 点赞回复栏 */}
                                                                 <div className={commentStyle.comment_tool}>
                                                                     <time>{dateFormat(child.create_time,"Y年m月d日 H时i分")}</time>
