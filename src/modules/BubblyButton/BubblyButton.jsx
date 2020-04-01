@@ -1,14 +1,9 @@
 import React,{useCallback,useState} from "react";
 import bubblyButtonStyle from "./bubblyButton.scss";
-
 // diff
-const equal = (prevProps, nextProps) => {
-    return prevProps.text === nextProps.text;
-};
-
+const equal = (prevProps, nextProps) => prevProps.text === nextProps.text && prevProps.callback === nextProps.callback;
 const BubblyButton = ({text,callback}) => {
     const [clsName, setClsName] = useState(bubblyButtonStyle.bubbly_button);
-
     const animateButton = useCallback(e => {
         e.preventDefault;
         setClsName(bubblyButtonStyle.bubbly_button);
@@ -20,7 +15,6 @@ const BubblyButton = ({text,callback}) => {
             l = null;
         },700);
     },[callback]);
-    return (<button className={clsName}
-                    onClick={e=>animateButton(e)}>{text?text:"Submit"}</button>);
+    return (<button className={clsName} onClick={e=>animateButton(e)}>{text?text:"Submit"}</button>);
 };
-export default BubblyButton;
+export default React.memo(BubblyButton, equal);

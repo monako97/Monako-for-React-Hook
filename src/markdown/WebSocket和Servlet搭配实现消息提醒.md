@@ -4,7 +4,13 @@
 
 #### 新建一个GetHttpSessionConfigurator类，并继承Configurator类
 
+> 使用的 Tomcat 自带的 websocket.jar
+
 ```java
+import javax.servlet.http.HttpSession;
+import javax.websocket.HandshakeResponse;
+import javax.websocket.server.HandshakeRequest;
+import javax.websocket.server.ServerEndpointConfig;
 /**
  * 获取 session 所在的 httpSession
  * @author monako
@@ -27,6 +33,22 @@ public class GetHttpSessionConfigurator extends ServerEndpointConfig.Configurato
 #### WebSocket类
 
 ```java
+import com.monako.club.doMain.SocketMessageBean;
+import com.monako.club.doMain.UserBean;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import javax.servlet.http.HttpSession;
+import javax.websocket.*;
+import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
+
+@ServerEndpoint(value = "/websocket", configurator = GetHttpSessionConfigurator.class)
 public class WebSocketEndpoint {
     // 保存所有的用户session
     private static Map<String, Session> SESSION_MAP = new Hashtable<>();

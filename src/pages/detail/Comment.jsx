@@ -5,7 +5,6 @@ import {changDaiLog} from "../../store/action";
 import {markdownParser} from "../../unit/markdownParser";
 import LikePoi from "../../modules/LikePoint/LikePoi";
 import http from "../../unit/httpUnit";
-import dateFormat from "../../unit/dateFormat";
 import Toast from "../../modules/Toast/controller";
 import Context from "../../store/Context";
 import Avatar from "../../modules/Avatar/Avatar";
@@ -181,7 +180,7 @@ const Comment = ({id}) => {
                                         <div className={commentStyle.comment_info} dangerouslySetInnerHTML={{ __html: _html }}/>
                                         {/* 点赞回复栏 */}
                                         <div className={`${commentStyle.comment_tool} ${commentStyle.parent}`}>
-                                            <time>{dateFormat(item.create_time,"Y年m月d日 H时i分")}</time>
+                                            <time>{new Date(item.create_time).format("Y年m月d日 H时i分")}</time>
                                             <div>
                                                 <LikePoi callback={onLike}
                                                          like={_like}
@@ -230,7 +229,7 @@ const Comment = ({id}) => {
                                                                      dangerouslySetInnerHTML={{ __html: child_html }}/>
                                                                 {/* 点赞回复栏 */}
                                                                 <div className={commentStyle.comment_tool}>
-                                                                    <time>{dateFormat(child.create_time,"Y年m月d日 H时i分")}</time>
+                                                                    <time>{new Date(child.create_time).format("Y年m月d日 H时i分")}</time>
                                                                     <div>
                                                                         <LikePoi callback={onLike}
                                                                                  like={child_like}

@@ -1,6 +1,5 @@
 import React from "react";
 import homeStyle from "./home-container.scss";
-import dateFormat from "../../unit/dateFormat";
 
 export default ({handleClick, list, index, style}) => {
     return (<article style={{
@@ -12,7 +11,7 @@ export default ({handleClick, list, index, style}) => {
         <a className={homeStyle.card_bg} style={{backgroundImage: "url(" + list[index]['image'] + ")"}}
            onClick={() => handleClick(list[index])} />
         <p className={homeStyle.title}>{list[index]['title']}</p>
-        <time>{dateFormat(list[index]['create_time'], "Y年m月d日 H时i分")}</time>
+        <time>{new Date(list[index]['create_time']).format("Y年m月d日 H时i分")}</time>
         <hr/>
         <aside>{list[index]['sub_title']}</aside>
         <a className={homeStyle.btn_reading}

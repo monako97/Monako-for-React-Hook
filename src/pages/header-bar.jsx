@@ -5,6 +5,7 @@ import {changDaiLog, changeUserInfo} from "../store/action";
 import Avatar from "../modules/Avatar/Avatar";
 import Context from "../store/Context";
 import SocketUnit from "../unit/SocketUnit";
+
 const HeaderBar = () => {
     new SocketUnit();
     const history = useHistory();
