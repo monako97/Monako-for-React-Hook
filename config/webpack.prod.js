@@ -11,7 +11,7 @@ module.exports = merge(common, {
             minChunks: 2,
             maxAsyncRequests: 5,
             maxInitialRequests: 3,
-            automaticNameDelimiter: '~',
+            automaticNameDelimiter: '-',
             name: true,
             cacheGroups: {
                 vendors: {

@@ -15,6 +15,7 @@ import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Properties;
@@ -22,67 +23,80 @@ import java.util.Vector;
 /**
  * 邮件发送工具类
  * @author monako
- * @Date   2019年11月22日 上午11:31:41
+ * @Date   2019年6月22日 上午10:34:41
  */
 public class MailUtil {
-    String host = "smtp.qq.com";            // SMTP 服务器名，可以从 QQ 邮箱的帮助文档查到 文档地址：https://service.mail.qq.com/cgi-bin/help?subtype=1&no=167&id=28
-    int port = 587;                         // SMTP 服务器端口号，可以从 QQ 邮箱的帮助文档查到端口为 465 或 587
-    String from = "";        								// 发件人邮箱地址
-    String username = "";    								// 发件人用户名
-    String password = "";   								// 发件人密码
-    String to = "";                         // 收件人邮箱地址
-    String filename = "";                   // 附件文件名
-    String subject = "";                    // 邮件主题
-    String content = "";                    // 邮件正文
-    Vector<String> file = new Vector<String>();             // 附件文件集合
-    public void setPort(int port) { this.port = port; }
-    public MailUtil() {}
-    public MailUtil(String to, String from, String smtp, int port,
-                    String username, String password, String subject, String content) {
-        this.to = to;
-        this.from = from;
-        this.host = smtp;
-        this.port = port;
-        this.username = username;
-        this.password = password;
-        this.subject = subject;
-        this.content = content;
-    }
+    /**
+     * SMTP服务器名，可以从 QQ 邮箱的帮助文档查到
+     * 文档地址：https://service.mail.qq.com/cgi-bin/help?subtype=1&no=167&id=28
+     * */
+    String host = "smtp.qq.com";
+    /**
+     * SMTP服务器端口号
+     * 可以从 QQ 邮箱的帮助文档查到，端口为 465 或 587
+     * */
+    int port = 587;
+    /**
+     * 发件人邮箱地址
+     * */
+    String from = "发件人邮箱地址";
+    /**
+     * 发件人用户名
+     * */
+    String username = "发件人用户名";
+    /**
+     * 发件人密码
+     * */
+    String password = "发件人密码";
+    /**
+     * 收件人邮箱地址
+     * */
+    String to;
+    /**
+     * 附件文件名
+     * */
+    String filename = "";
+    /**
+     * 邮件主题
+     * */
+    String subject;
+    /**
+     * 邮件正文
+     * */
+    String content;
+    /**
+     * 附件文件集合
+     * */
+    Vector<String> file = new Vector<>();
+    
     public MailUtil(String to, String subject, String content) {
         this.to = to;
         this.subject = subject;
         this.content = content;
     }
-    public void setHost(String host) { this.host = host; }
-    public void setPassWord(String pwd) { this.password = pwd; }
-    public void setUserName(String usn) { this.username = usn; }
-    public void setTo(String to) { this.to = to; }
-    public void setFrom(String from) { this.from = from; }
-    public void setSubject(String subject) { this.subject = subject; }
-    public void setContent(String content) { this.content = content; }
+
     /**
-     * @param strText
-     * @return
-     * @Description: 把主题转为中文 utf8
+     * 把主题转为中文 utf8
+     * @param strText 字符串
      * @author monako
-     * @Date   2019年11月22日 上午12:32:27
      */
     public String transferChinese(String strText) {
         try {
-            strText = MimeUtility.encodeText(new String(strText.getBytes(), "utf-8"), "utf-8", "B");
+            strText = MimeUtility.encodeText(new String(strText.getBytes(),
+                    StandardCharsets.UTF_8), "utf-8", "B");
         } catch (Exception e) {
             e.printStackTrace();
         }
         return strText;
     }
 
-    public void attachfile(String fname) { file.addElement(fname); }
+    public void attachFile(String fileName) {
+        file.addElement(fileName);
+    }
 
     /**
-     * @return
-     * @Description: 发送邮件，发送成功返回true 失败false
+     * 发送邮件，发送成功返回true 失败false
      * @author monako
-     * @Date   2019年11月22日 上午13:32:47
      */
     public boolean sendMail() {
         // 构造mail session
@@ -95,12 +109,9 @@ public class MailUtil {
         props.put("mail.smtp.auth", "true");
         // SMTP 服务器端口号
         props.put("mail.smtp.port", port);
-        // 是否使用 SSL 安全连接
-        // props.put("mail.smtp.ssl.enable", "true");
-        // 是否输出控制台信息
-        // props.put("mail.debug", "true");
         Session session = Session.getDefaultInstance(props,
                 new Authenticator() {
+                    @Override
                     public PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);
                     }
@@ -130,10 +141,10 @@ public class MailUtil {
             while (efile.hasMoreElements()) {
 
                 MimeBodyPart mbpFile = new MimeBodyPart();
-                filename = efile.nextElement().toString();
+                filename = efile.nextElement();
                 FileDataSource fds = new FileDataSource(filename);
                 mbpFile.setDataHandler(new DataHandler(fds));
-                String filename = new String(fds.getName().getBytes(), "ISO-8859-1");
+                String filename = new String(fds.getName().getBytes(), StandardCharsets.ISO_8859_1);
 
                 mbpFile.setFileName(filename);
                 // 向MimeMessage添加（Multipart代表附件）
@@ -167,7 +178,7 @@ public class MailUtil {
 // 发送邮件
 MailUtil sendmail = new MailUtil("邮箱", "标题", "正文");
 // 添加附件
-sendmail.attachfile("附件地址");
+sendmail.attachFile("附件地址");
 // 邮件发送成功返回 true
 boolean isMail = sendmail.sendMail();
 ```

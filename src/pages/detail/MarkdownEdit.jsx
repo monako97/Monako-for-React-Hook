@@ -33,7 +33,7 @@ const MarkdownEdit = ({callback}) => {
         let param = new FormData();
         //通过append向form对象添加数据
         param.append("file", file);
-        http.post("upload_img",param,{
+        http.post("upload_file",param,{
             headers: {
                 "Content-Type": "multipart/form-data"
             },

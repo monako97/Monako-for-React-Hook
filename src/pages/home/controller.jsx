@@ -52,7 +52,8 @@ export default () => {
             url: 'markdown_list',
             method: "POST",
             data: {
-                currentPage: page
+                currentPage: page,
+                pageSize: 100
             }
         }).then(response => {
             if (response.status === 200) {

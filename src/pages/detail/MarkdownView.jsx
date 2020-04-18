@@ -20,7 +20,7 @@ const MarkdownView = () => {
             if (response && response.status === 200) {
                 setState(response.data.result);
                 // 读取md文件
-                getMarkdown(response.data.result.title);
+                getMarkdown(response.data.result.file_src);
                 document.title = response.data.result.title;
                 // 判断背景图片加载完成
                 let img = new Image();
@@ -42,10 +42,10 @@ const MarkdownView = () => {
             clearTimeout(_time);
         }
     },[]);
-    const getMarkdown = useCallback(title => {
+    const getMarkdown = useCallback(fileUrl => {
         http.request({
             method: "GET",
-            url: `http://${document.domain + ":" + window.location.port}/markdown/${title}.md`,
+            url: fileUrl,
             responseType: "blob"
         }).then(response => {
             if (response && response.status === 200){
