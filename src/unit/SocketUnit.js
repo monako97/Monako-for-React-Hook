@@ -5,7 +5,7 @@ import {changeUserInfo} from "../store/action";
 import {NotificationUtil} from "./NotificationUtil";
 
 const socketUnit = () => {
-    const url = `${document.domain}:8080/monako_api/websocket`;
+    const url = `${document.domain}/websocket/`;
     // 心跳计时器
     const [heartTimer, setHeartTimer] = useState(null);
     // 心跳时间 5s
@@ -43,7 +43,7 @@ const socketUnit = () => {
             Toast.danger("您的浏览器不支持WebSocket");
         } else {
             try{
-                setSocket(new WebSocket(`ws://${url}`));
+                setSocket(new WebSocket(`wss://${url}`));
             }catch (e) { }
         }
     },[reConnectCount]);

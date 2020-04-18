@@ -13,7 +13,7 @@ let num = 0;
 
 // 创建实例
 const http = axios.create({
-    baseURL: `http://${document.domain}/monako_api/`,
+    baseURL: `https://${document.domain}/monako_api/`,
     headers: {
         "Content-Type": 'application/x-www-form-urlencoded;charset=utf-8', // 未POST请求时，数据未做处理时会出现错误，解决方法就是 直接设置该项
         'X-Requested-With': 'XMLHttpRequest', // 标识这是一个 ajax 请求
