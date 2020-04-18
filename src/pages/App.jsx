@@ -14,7 +14,7 @@ export default () => {
         <Context.Provider value={{state, dispatch}}>
             <HeaderBar />
             <DaiLog />
-            <Live2D model='../static/live2d/Pio/index.json' width="280" height="250"/>
+            <Live2D model={`https://${document.domain}/static_file/live2d/Pio/index.json`} width="280" height="250"/>
             <Suspense fallback={null}>
                 <AnimatedSwitch>
                     {
