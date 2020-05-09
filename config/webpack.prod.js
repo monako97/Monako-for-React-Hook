@@ -3,8 +3,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const common = require('./webpack.common');
 module.exports = merge(common, {
-    // devtool:"cheap-module-source-map",
+    devtool:"cheap-module-source-map",
     optimization: {
+        moduleIds: "hashed", // 固定module id，为了缓存
         splitChunks: {
             chunks: "async",
             minSize: 30000,
@@ -20,6 +21,7 @@ module.exports = merge(common, {
                     minSize: 100,
                     minChunks: 5,
                     chunks: 'all',
+                    enforce: true,
                     priority: 1 // 该配置项是设置处理的优先级，数值越大越优先处理
                 },
                 commons: {
@@ -33,23 +35,20 @@ module.exports = merge(common, {
                 }
             }
         },
-        runtimeChunk: {
-            name:'main'
-        },
+        runtimeChunk: true,
         minimizer: [
             // 自定义js优化配置，将会覆盖默认配置
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true, // 开启并行压缩，充分利用cpu
-                sourceMap: false,
+                sourceMap: true,
                 extractComments: {
                     condition: true,
                     filename(file) {
-                        return `${file}.LICENSE`;
+                        return `${file}.LICENSE.txt`;
                     },
                     banner(commentsFile) {
-                        // return `monako ${commentsFile}`;
-                        return null;
+                        return `MONAKO ${commentsFile}`;
                     },
                 }, // 移除注释
                 uglifyOptions: {

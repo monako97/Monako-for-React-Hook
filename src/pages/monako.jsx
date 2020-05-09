@@ -5,7 +5,6 @@ import "../style/common.scss";
 import "../style/iconfont";
 import "../unit/dateFormat";
 import App from "../pages/App";
-
 const render = module.hot ? ReactDom.render : ReactDom.hydrate;
 render(<BrowserRouter basename="/">
     <App />

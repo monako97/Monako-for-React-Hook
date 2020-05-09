@@ -2,6 +2,7 @@ import React, {useState, useEffect, useCallback} from "react";
 import {useHistory} from "react-router";
 import http from "../../unit/httpUnit";
 import HomeCardUI from "./HomeCardUI";
+
 export default () => {
     const history = useHistory();
     // 列表
@@ -20,12 +21,18 @@ export default () => {
             pathname: `/detail/${data.id}`
         });
     }, []);
+    let _timer = null;
     // 动态获取列表高度
     const _rowHeight = useCallback(() => {
-        if (innerWidth > 880) setRowHeight(567);
-        else if (innerWidth > 700) setRowHeight(547);
-        else if (innerWidth > 580) setRowHeight(517);
-        else setRowHeight(419);
+        if (_timer !== null) clearTimeout(_timer);
+        _timer = setTimeout(() => {
+            if (innerWidth > 880) setRowHeight(567);
+            else if (innerWidth > 700) setRowHeight(547);
+            else if (innerWidth > 580) setRowHeight(517);
+            else setRowHeight(419);
+            clearTimeout(_timer);
+            _timer = null;
+        }, 300);
     }, []);
     // 首次加载
     useEffect(() => {
@@ -33,7 +40,10 @@ export default () => {
         moreList();
         _rowHeight();
         window.addEventListener("resize", _rowHeight);
-        return () => window.removeEventListener("resize", _rowHeight);
+        return () => {
+            window.removeEventListener("resize", _rowHeight);
+            clearTimeout(_timer);
+        }
     }, []);
     // 是否已经滚动到底部
     const onRowsRendered = useCallback(({stopIndex}) => {
@@ -78,7 +88,7 @@ export default () => {
 
     // 渲染列表
     const rowRenderer = React.useCallback(({key, index, style}) => {
-        return (<HomeCardUI key={key} index={index} style={style} list={list} handleClick={handleClick} />);
+        return (<HomeCardUI key={key} index={index} style={style} list={list} handleClick={handleClick}/>);
     }, [list]);
     return {list, isRowLoaded, onRowsRendered, rowHeight, rowRenderer};
 }
